@@ -23,4 +23,12 @@ image = image.convert('RGB')
 
 image_array = np.array(image)
 coastline_y, coastline_x, coastline_rgb = np.where(image_array == coastline_rgb)
-print(coastline_x.__len__())
+
+coastline_x = coastline_x.reshape(-1, 1)
+coastline_y = coastline_y.reshape(-1, 1)
+coastline_coords = np.concatenate((coastline_x, coastline_y), axis = 1)
+coastline_coords = list(map(tuple, coastline_coords))
+coastline_coords = sorted(tuple(set(coastline_coords)))
+
+
+print(coastline_coords.__len__())
